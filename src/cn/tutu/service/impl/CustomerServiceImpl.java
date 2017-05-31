@@ -10,9 +10,11 @@ import cn.tutu.service.CustomerService;
 import cn.tutu.utils.PageBean;
 
 public class CustomerServiceImpl implements CustomerService {
+
 	private CustomerDao cd;
 	@Override
 	public PageBean getPageBean(DetachedCriteria dc, Integer currentPage, Integer pageSize) {
+
 		//1 调用Dao查询总记录数
 		Integer totalCount = cd.getTotalCount(dc);
 		//2 创建PageBean对象

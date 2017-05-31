@@ -85,6 +85,9 @@
 	<bean name="customerAction" class="cn.tutu.web.action.CustomerAction" scope="prototype" >
 		<property name="cs" ref="customerService" />
 	</bean>
+
+
+
 	<!-- service -->
 	<bean name="userService" class="cn.tutu.service.impl.UserServiceImpl" >
 		<property name="ud" ref="userDao" />
@@ -92,6 +95,9 @@
 	<bean name="customerService" class="cn.tutu.service.impl.CustomerServiceImpl" >
 		<property name="cd" ref="customerDao" />
 	</bean>
+
+
+
 	<!-- dao -->
 	<bean name="userDao" class="cn.tutu.dao.impl.UserDaoImpl" >
 		<!-- 注入sessionFactory -->

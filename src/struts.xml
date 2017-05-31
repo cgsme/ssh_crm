@@ -28,7 +28,8 @@
 		</action>
 		
 		<action name="CustomerAction_*" class="customerAction" method="{1}" >
-			<result name="list"  >/jsp/customer/list.jsp</result>
+			<result name="list" >/jsp/customer/list.jsp</result>
+			<result name="error">/index.jsp</result>
 		</action>
 	</package>
 </struts>

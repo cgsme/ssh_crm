@@ -13,11 +13,11 @@ public class PageBean {
 	private Integer totalPage;
 	//分页列表数据
 	private List	list;
+
 	public PageBean(Integer currentPage, Integer totalCount, Integer pageSize) {
+
 		this.totalCount = totalCount;
-		
 		this.pageSize =  pageSize;
-		
 		this.currentPage = currentPage;
 		
 		if(this.currentPage == null){

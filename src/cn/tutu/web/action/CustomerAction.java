@@ -13,28 +13,32 @@ import cn.tutu.service.CustomerService;
 import cn.tutu.utils.PageBean;
 
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
-	private Customer customer = new Customer();
-	
-	private CustomerService cs;
 
+	private Customer customer = new Customer();
+	private CustomerService cs;
 	private Integer currentPage;
 	private Integer pageSize;
 
-	public String list() throws Exception {
-		//封装离线查询对象
-		DetachedCriteria dc = DetachedCriteria.forClass(Customer.class);
-		//判断并封装参数
-		if(StringUtils.isNotBlank(customer.getCust_name())){
-			dc.add(Restrictions.like("cust_name", "%"+customer.getCust_name()+"%"));
-		}
-		
-		//1 调用Service查询分页数据(PageBean)
-		PageBean pb = cs.getPageBean(dc,currentPage,pageSize);
-		//2 将PageBean放入request域,转发到列表页面显示
-		ActionContext.getContext().put("pageBean", pb);
-		return "list";
+	// 查询所有客户
+	public String list() {
+
+			//封装离线查询对象
+			DetachedCriteria dc = DetachedCriteria.forClass(Customer.class);
+			//判断筛选条件中的客户名称是否为空，并封装参数
+			if(StringUtils.isNotBlank(customer.getCust_name())){   // 搜索条件不为空
+
+				// 往离线查询对象中添加查询条件（模糊查询）
+				dc.add(Restrictions.like("cust_name", "%"+customer.getCust_name()+"%"));
+			}
+			//1 调用Service查询分页数据(PageBean)
+			PageBean pb = cs.getPageBean(dc, currentPage, pageSize);
+			System.out.println("currentPage:" + currentPage + ",pageSize:" +pageSize);
+			//2 将PageBean放入request域,转发到列表页面显示
+			ActionContext.getContext().put("pageBean", pb);
+			return "list";
 	}
 
+	// 模型驱动的set方法
 	@Override
 	public Customer getModel() {
 		return customer;
