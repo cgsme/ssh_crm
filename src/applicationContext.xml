@@ -25,7 +25,7 @@
 	</bean>
 	
 	<!-- 配置通知 -->
-	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager" >
+	<tx:advice id="txAdvice" transaction-manager="transactionManager" >
 		<tx:attributes>
 			<tx:method name="save*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
 			<tx:method name="persist*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
@@ -35,19 +35,20 @@
 			<tx:method name="remove*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
 			<tx:method name="get*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="true" />
 			<tx:method name="find*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="true" />
+			<tx:method name="*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
 		</tx:attributes>
-	</tx:advice> -->
+	</tx:advice>
 	<!-- 配置将通知织入目标对象
 	配置切点
 	配置切面 -->
-	<!-- <aop:config>
-		<aop:pointcut expression="execution(* cn.tutuervice.impl.*ServiceImpl.*(..))" id="txPc"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* cn.tutu.service.impl.*ServiceImpl.*(..))" id="txPc"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPc" />
-	</aop:config> -->
+	</aop:config>
 	<!-- ========================================================================================= -->
-	<!-- 开启注解事务 -->
+	<!-- 开启注解事务
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	
+	-->
 	<!-- 将SessionFactory配置到spring容器中 -->
 	<!-- 加载配置方案1:仍然使用外部的hibernate.cfg.xml配置信息 -->
 	<!-- <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" >
@@ -85,6 +86,9 @@
 	<bean name="customerAction" class="cn.tutu.web.action.CustomerAction" scope="prototype" >
 		<property name="cs" ref="customerService" />
 	</bean>
+	<bean name="baseDictAction" class="cn.tutu.web.action.BaseDictAction" scope="prototype" >
+		<property name="baseDictService" ref="baseDictService" />
+	</bean>
 
 
 
@@ -95,6 +99,9 @@
 	<bean name="customerService" class="cn.tutu.service.impl.CustomerServiceImpl" >
 		<property name="cd" ref="customerDao" />
 	</bean>
+	<bean name="baseDictService" class="cn.tutu.service.impl.BaseDictServiceImpl" >
+		<property name="baseDictDao" ref="baseDictDao" />
+	</bean>
 
 
 
@@ -104,6 +111,10 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean name="customerDao" class="cn.tutu.dao.impl.CustomerDaoImpl" >
+		<!-- 注入sessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="baseDictDao" class="cn.tutu.dao.impl.BaseDictDaoImpl" >
 		<!-- 注入sessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

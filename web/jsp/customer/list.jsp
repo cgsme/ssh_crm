@@ -97,7 +97,7 @@
 													<TD>客户名称</TD>
 													<TD>客户级别</TD>
 													<TD>客户来源</TD>
-													<TD>联系人</TD>
+													<TD>客户行业</TD>
 													<TD>电话</TD>
 													<TD>手机</TD>
 													<TD>操作</TD>
@@ -109,13 +109,13 @@
 														<s:property value="#cust.cust_name" />
 													</TD>
 													<TD>
-													<s:property value="#cust.cust_level" />
+													<s:property value="#cust.cust_level.dict_item_name" />
 													</TD>
 													<TD>
-													<s:property value="#cust.cust_source" />
+													<s:property value="#cust.cust_source.dict_item_name" />
 													</TD>
 													<TD>
-													<s:property value="#cust.cust_linkman" />
+													<s:property value="#cust.cust_industry.dict_item_name" />
 													</TD>
 													<TD>
 													<s:property value="#cust.cust_phone" />

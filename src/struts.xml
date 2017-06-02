@@ -29,8 +29,11 @@
 		
 		<action name="CustomerAction_*" class="customerAction" method="{1}" >
 			<result name="list" >/jsp/customer/list.jsp</result>
+			<result name="toList"  type="redirect">CustomerAction_list</result>
 			<result name="error">/index.jsp</result>
 		</action>
+
+		<action name="BaseDictAction" class="baseDictAction" method="execute" />
 	</package>
 </struts>
 	

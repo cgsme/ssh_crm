@@ -38,6 +38,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			return "list";
 	}
 
+	/*
+		添加客户
+	 */
+	public String add() throws Exception {
+		cs.save(customer);
+		return "toList";
+	}
+
 	// 模型驱动的set方法
 	@Override
 	public Customer getModel() {
