@@ -12,6 +12,8 @@ import cn.tutu.domain.Customer;
 import cn.tutu.service.CustomerService;
 import cn.tutu.utils.PageBean;
 
+import java.util.List;
+
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
 
 	private Customer customer = new Customer();
@@ -41,9 +43,20 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	/*
 		添加客户
 	 */
-	public String add() throws Exception {
-		cs.save(customer);
+	public String saveOrUpdate() throws Exception {
+		cs.saveOrUpdate(customer);
 		return "toList";
+	}
+
+	/**
+	 * 修改用户页面
+	 * @return
+	 * @throws Exception
+	 */
+	public String toEdit() throws Exception {
+		Customer cust = cs.findByCustId(customer.getCust_id());
+		ActionContext.getContext().put("customer", cust);
+		return "toEdit";
 	}
 
 	// 模型驱动的set方法

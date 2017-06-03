@@ -27,7 +27,7 @@ public class PageBean {
 		
 		if(this.pageSize == null){
 			//如果每页显示条数没有指定,默认每页显示3条
-			this.pageSize = 3;
+			this.pageSize = 8;
 		}
 		
 		//计算总页数

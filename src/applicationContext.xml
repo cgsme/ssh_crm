@@ -89,6 +89,9 @@
 	<bean name="baseDictAction" class="cn.tutu.web.action.BaseDictAction" scope="prototype" >
 		<property name="baseDictService" ref="baseDictService" />
 	</bean>
+	<bean name="linkManAction" class="cn.tutu.web.action.LinkManAction" scope="prototype">
+		<property name="linkManService" ref="linkManService" />
+	</bean>
 
 
 
@@ -101,6 +104,9 @@
 	</bean>
 	<bean name="baseDictService" class="cn.tutu.service.impl.BaseDictServiceImpl" >
 		<property name="baseDictDao" ref="baseDictDao" />
+	</bean>
+	<bean name="linkManService" class="cn.tutu.service.impl.LinkManServiceImpl">
+		<property name="linkManDao" ref="linkManDao" />
 	</bean>
 
 
@@ -117,5 +123,8 @@
 	<bean name="baseDictDao" class="cn.tutu.dao.impl.BaseDictDaoImpl" >
 		<!-- 注入sessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="linkManDao" class="cn.tutu.dao.impl.LinkManDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 </beans>

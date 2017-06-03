@@ -1,10 +1,11 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<TITLE>添加客户</TITLE>
+<TITLE><s:if test="#customer == null?'添加':'编辑'" />客户</TITLE>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <LINK href="${pageContext.request.contextPath }/css/Style.css" type=text/css rel=stylesheet>
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css rel=stylesheet>
@@ -15,17 +16,23 @@
 	<script type="text/javascript">
 		// ajax加载数据字典，生成select
 		$().ready(function(){
-			loadItemName("006","level", "","cust_level.dict_id");
-			loadItemName("002","source", "", "cust_source.dict_id");
-			loadItemName("001","industry", "", "cust_industry.dict_id");
+			loadItemName("006","level",
+					"<s:if test="#customer.cust_level != null" ><s:property value="#customer.cust_level.dict_id"/></s:if>",
+					"cust_level.dict_id");
+			loadItemName("002","source",
+					"<s:if test="#customer.cust_source != null" ><s:property value="#customer.cust_source.dict_id"/></s:if>",
+					"cust_source.dict_id");
+			loadItemName("001","industry",
+					"<s:if test="#customer.cust_industry != null" ><s:property value="#customer.cust_industry.dict_id"/></s:if>",
+					"cust_industry.dict_id");
 		});
 
 
 	</script>
 </HEAD>
 <BODY>
-	<FORM id=form1 name="form1" action="${pageContext.request.contextPath }/CustomerAction_add" method=post>
-
+	<FORM id=form1 name="form1" action="${pageContext.request.contextPath }/CustomerAction_saveOrUpdate" method=post>
+		<input type="hidden" name="cust_id" value="<s:property value="#customer.cust_id"/>">
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
@@ -46,7 +53,7 @@
 					<TD vAlign=top width="100%" bgColor=#ffffff>
 						<TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
 							<TR>
-								<TD class=manageHead>当前位置：客户管理 &gt; 添加客户</TD>
+								<TD class=manageHead>当前位置：客户管理 &gt; <s:if test="#customer == null?'添加':'编辑'" />客户</TD>
 							</TR>
 							<TR>
 								<TD height=2></TD>
@@ -59,7 +66,7 @@
 							<TR>
 								<td>客户名称：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
+								<INPUT class=textbox id=sChannel2 value="<s:property value="#customer.cust_name"/>"
 														style="WIDTH: 180px" maxLength=50 name="cust_name">
 								</td>
 								<td>客户级别 ：</td>
@@ -80,12 +87,12 @@
 
 								<td>固定电话 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
+								<INPUT class=textbox id=sChannel2 value="<s:property value="#customer.cust_phone"/>"
 														style="WIDTH: 180px" maxLength=50 name="cust_phone">
 								</td>
 								<td>移动电话 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
+								<INPUT class=textbox id=sChannel2 value="<s:property value="#customer.cust_mobile"/>"
 														style="WIDTH: 180px" maxLength=50 name="cust_mobile">
 								</td>
 							</TR>

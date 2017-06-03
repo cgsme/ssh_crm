@@ -1,7 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib  prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,12 +25,19 @@
 		//2 提交表单
 			$("#pageForm").submit();
 	};
+
+	function selectOne(cust_id, cust_name) {
+		var srcWin = window.opener;
+		srcWin.document.getElementById("cust_id").value = cust_id;
+		srcWin.document.getElementById("cust_name").value = cust_name;
+		window.close();
+	}
 </SCRIPT>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
-	
+	<s:debug></s:debug>
 		
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
@@ -70,6 +77,8 @@
 										<input type="hidden" name="currentPage" id="currentPageInput" value="<s:property value="#pageBean.currentPage" />" />
 										<!-- 隐藏域.每页显示条数 -->
 										<input type="hidden" name="pageSize" id="pageSizeInput"       value="<s:property value="#pageBean.pageSize" />" />
+										<%--是否是弹窗参数--%>
+										<input type="hidden" name="from" value="#parameters.from">
 										<TABLE cellSpacing=0 cellPadding=2 border=0>
 											<TBODY>
 												<TR>
@@ -124,9 +133,14 @@
 													<s:property value="#cust.cust_mobile" />
 													</TD>
 													<TD>
-													<a href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.cust_id}">修改</a>
-													&nbsp;&nbsp;
-													<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+														<s:if test="#parameters.from == null">
+															<a href="${pageContext.request.contextPath }/CustomerAction_toEdit?cust_id=<s:property value="#cust.cust_id"/>">修改</a>
+															&nbsp;&nbsp;
+															<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+														</s:if>
+														<s:else>
+															<input type="button" onclick="selectOne(<s:property value="#cust.cust_id"/>, '<s:property value="#cust.cust_name"/>')" value="选择">
+														</s:else>
 													</TD>
 												</TR>
 												</s:iterator>

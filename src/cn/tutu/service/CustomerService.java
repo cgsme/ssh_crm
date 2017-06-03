@@ -10,4 +10,8 @@ public interface CustomerService {
 	PageBean getPageBean(DetachedCriteria dc, Integer currentPage, Integer pageSize);
 
     void save(Customer customer);
+
+	void saveOrUpdate(Customer customer);
+
+	Customer findByCustId(Long cust_id);
 }
