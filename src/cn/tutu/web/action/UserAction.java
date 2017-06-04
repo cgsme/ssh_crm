@@ -26,6 +26,24 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		return "toHome";
 	}
 
+	/**
+	 * 用户注册
+	 * @return
+	 * @throws Exception
+	 */
+	public String register() throws Exception{
+
+		try {
+			userService.existUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ActionContext.getContext().put("error", e.getMessage());
+			return "register";
+		}
+		userService.saveUser(user);
+		return "toLogin";
+	}
+
 	@Override
 	public User getModel() {
 		return user;
