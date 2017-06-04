@@ -3,6 +3,10 @@ package cn.tutu.service.impl;
 import cn.tutu.dao.LinkManDao;
 import cn.tutu.domain.LinkMan;
 import cn.tutu.service.LinkManService;
+import cn.tutu.utils.PageBean;
+import org.hibernate.criterion.DetachedCriteria;
+
+import java.util.List;
 
 /**
  * Created by 曹贵生 on 2017/6/3.
@@ -19,5 +23,19 @@ public class LinkManServiceImpl implements LinkManService {
     @Override
     public void save(LinkMan linkMan) {
         linkManDao.save(linkMan);
+    }
+
+    @Override
+    public Integer getTotalCount(DetachedCriteria criteria) {
+        return linkManDao.getTotalCount(criteria);
+    }
+
+    @Override
+    public PageBean getPageBean(DetachedCriteria criteria, Integer currentPage, Integer pageSize) {
+        Integer totalCount = linkManDao.getTotalCount(criteria);
+        PageBean pageBean = new PageBean(currentPage, totalCount, pageSize);
+        List<LinkMan> linkManList = linkManDao.getPageList(criteria, pageBean.getStart(), pageBean.getPageSize());
+        pageBean.setList(linkManList);
+        return pageBean;
     }
 }

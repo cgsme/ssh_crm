@@ -13,17 +13,17 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
 <SCRIPT language=javascript>
 	function changePage(pageNum){
-			//1 将页码的值放入对应表单隐藏域中
-				$("#currentPageInput").val(pageNum);
-			//2 提交表单
-				$("#pageForm").submit();
+		//1 将页码的值放入对应表单隐藏域中
+		$("#currentPageInput").val(pageNum);
+		//2 提交表单
+		$("#pageForm").submit();
 	};
 	
 	function changePageSize(pageSize){
-			//1 将页码的值放入对应表单隐藏域中
-			$("#pageSizeInput").val(pageSize);
+		//1 将页码的值放入对应表单隐藏域中
+		$("#pageSizeInput").val(pageSize);
 		//2 提交表单
-			$("#pageForm").submit();
+		$("#pageForm").submit();
 	};
 
 	function selectOne(cust_id, cust_name) {
@@ -76,7 +76,7 @@
 										<!-- 隐藏域.当前页码 -->
 										<input type="hidden" name="currentPage" id="currentPageInput" value="<s:property value="#pageBean.currentPage" />" />
 										<!-- 隐藏域.每页显示条数 -->
-										<input type="hidden" name="pageSize" id="pageSizeInput"       value="<s:property value="#pageBean.pageSize" />" />
+										<input type="hidden" name="pageSize" id="pageSizeInput" value="<s:property value="#pageBean.pageSize" />" />
 										<%--是否是弹窗参数--%>
 										<input type="hidden" name="from" value="#parameters.from">
 										<TABLE cellSpacing=0 cellPadding=2 border=0>

@@ -12,7 +12,7 @@ public class PageBean {
 	//总页数
 	private Integer totalPage;
 	//分页列表数据
-	private List	list;
+	private List list;
 
 	public PageBean(Integer currentPage, Integer totalCount, Integer pageSize) {
 
@@ -20,21 +20,21 @@ public class PageBean {
 		this.pageSize =  pageSize;
 		this.currentPage = currentPage;
 		
-		if(this.currentPage == null){
+		if(this.currentPage == null) {
 			//如页面没有指定显示那一页.显示第一页.
 			this.currentPage = 1;
 		}
 		
-		if(this.pageSize == null){
-			//如果每页显示条数没有指定,默认每页显示3条
-			this.pageSize = 8;
+		if(this.pageSize == null) {
+			// 如果每页显示条数没有指定,默认每页显示3条
+			this.pageSize = 3;
 		}
 		
-		//计算总页数
+		// 计算总页数
 		this.totalPage = (this.totalCount+this.pageSize-1)/this.pageSize;
 		
-		//判断当前页数是否超出范围
-		//不能小于1
+		// 判断当前页数是否超出范围
+		// 不能小于1
 		if(this.currentPage < 1){
 			this.currentPage = 1;
 		}
@@ -79,10 +79,5 @@ public class PageBean {
 	public void setList(List list) {
 		this.list = list;
 	}
-	
-	
-	
-	
-	
 	
 }
