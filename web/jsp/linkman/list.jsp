@@ -122,8 +122,8 @@
 													<TD>${linkman.lkm_mobile }</TD>
 
 													<TD>
-                                                    <s:if test="#paramters.from == null">
-                                                        <a href="${pageContext.request.contextPath }/linkmanServlet?method=edit&lkmId=${linkman.lkm_id}">修改</a>
+                                                    <s:if test="#parameters.from == null">
+                                                        <a href="${pageContext.request.contextPath }/LinkManAction_toEdit?&lkm_id=${linkman.lkm_id}">修改</a>
                                                         &nbsp;&nbsp;
                                                         <a href="${pageContext.request.contextPath }/linkmanServlet?method=delete&lkmId=${linkman.lkm_id}">删除</a>
                                                     </s:if>

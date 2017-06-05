@@ -38,4 +38,23 @@ public class LinkManServiceImpl implements LinkManService {
         pageBean.setList(linkManList);
         return pageBean;
     }
+
+    /**
+     * 通过id查询联系人
+     * @param lkm_id
+     * @return
+     */
+    @Override
+    public LinkMan getById(Long lkm_id) {
+        return linkManDao.getById(lkm_id);
+    }
+
+    /**
+     * 保存或修改用户
+     * @param linkMan
+     */
+    @Override
+    public void saveOrUpdate(LinkMan linkMan) {
+        linkManDao.saveOrUpdate(linkMan);
+    }
 }

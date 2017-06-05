@@ -50,8 +50,7 @@ public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>
      * @throws Exception
      */
     public String add() throws Exception {
-
-        linkManService.save(linkMan);
+        linkManService.saveOrUpdate(linkMan);
         return "toList";
     }
 
@@ -72,6 +71,17 @@ public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>
         PageBean pageBean = linkManService.getPageBean(criteria, currentPage, pageSize);
         ActionContext.getContext().put("pageBean", pageBean);
         return "list";
+    }
+
+    /**
+     * 修改联系人
+     * @return
+     * @throws Exception
+     */
+    public String toEdit() throws Exception {
+        linkMan = linkManService.getById(linkMan.getLkm_id());
+        ActionContext.getContext().put("linkMan", linkMan);
+        return "toEdit";
     }
 
     @Override

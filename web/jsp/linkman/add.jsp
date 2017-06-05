@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,33 +52,34 @@
 							</TR>
 						</TABLE>
 						<TABLE cellSpacing=0 cellPadding=5  border=0>
-							<input id="cust_id" type="hidden" name="customer.cust_id"/>
+							<input type="hidden" name="lkm_id" value="<s:property value="#linkMan.lkm_id"/>">
 							<tr>
 								<td>所属客户：</td>
 								<td colspan="3">
-									<input id="cust_name" type="text" style="WIDTH: 180px"/>
+									<input id="cust_id" type="hidden" name="customer.cust_id" value="<s:property value="#linkMan.customer.cust_id"/>"/>
+									<input id="cust_name" type="text" style="WIDTH: 180px" value="<s:property value="#linkMan.customer.cust_name"/>"/>
 									<input type="button" onclick="choseCust()" value="选择联系人"/>
 								</td>
 							</tr>
 							<TR>
 								<td>联系人名称：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="lkm_name">
+								<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="lkm_name" value="<s:property value="#linkMan.lkm_name" />">
 								</td>
 								<td>联系人性别：</td>
 								<td>
-								<input type="radio" value="1" name="lkm_gender">男
-								<input type="radio" value="2" name="lkm_gender">女
+								<input type="radio" value="1" <s:if test="#linkMan.lkm_gender eq '1'">checked="checked"</s:if> name="lkm_gender">男
+								<input type="radio" value="2" <s:if test="#linkMan.lkm_gender eq '2'">checked="checked"</s:if> name="lkm_gender">女
 								</td>
 							</TR>
 							<TR>
 								<td>联系人办公电话 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="lkm_phone">
+								<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="lkm_phone" value="<s:property value="#linkMan.lkm_phone" />">
 								</td>
 								<td>联系人手机 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="lkm_mobile">
+								<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="lkm_mobile" value="<s:property value="#linkMan.lkm_name" />">
 								</td>
 							</TR>
 							<tr>

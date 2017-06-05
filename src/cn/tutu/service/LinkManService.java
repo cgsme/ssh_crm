@@ -31,4 +31,17 @@ public interface LinkManService {
      * @param pageSize
      */
     PageBean getPageBean(DetachedCriteria criteria, Integer currentPage, Integer pageSize);
+
+    /**
+     * 通过id查询联系人
+     * @param lkm_id
+     * @return
+     */
+    LinkMan getById(Long lkm_id);
+
+    /**
+     * 保存或修改用户
+     * @param linkMan
+     */
+    void saveOrUpdate(LinkMan linkMan);
 }
