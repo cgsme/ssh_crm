@@ -44,6 +44,16 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		return "toLogin";
 	}
 
+    /**
+     * 退出系统
+     * @return
+     * @throws Exception
+     */
+    public String logout() throws Exception{
+        ActionContext.getContext().getSession().remove("user");
+        return "toLogin";
+    }
+
 	@Override
 	public User getModel() {
 		return user;
