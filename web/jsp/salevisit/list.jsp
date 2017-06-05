@@ -33,8 +33,6 @@
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
-	
-		
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
@@ -66,9 +64,7 @@
 							<TBODY>
 								<TR>
 									<TD height=25>	
-										<FORM id="pageForm" name="customerForm"
-										action="${pageContext.request.contextPath }/SaleVisitAction_list"
-										method=post>
+										<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/SaleVisitAction_list" method=post>
 										<!-- 隐藏域.当前页码 -->
 										<input type="hidden" name="currentPage" id="currentPageInput" value="<s:property value="#pageBean.currentPage" />" />
 										<!-- 隐藏域.每页显示条数 -->
@@ -80,7 +76,7 @@
 													<TD>
 														<input type="hidden" name="customer.cust_id" id="cust_id" value="${param['customer.cust_id']}" />
 														<INPUT class=textbox style="WIDTH: 80px" maxLength=50 name="cust_name"  id="cust_name" value="${param['cust_name']}" >
-														<input type="button" value="选择客户" onclick="window.open('${pageContext.request.contextPath}/CustomerAction_list?select=true','','width=600,height=300')" />
+														<input type="button" value="选择客户" onclick="window.open('${pageContext.request.contextPath}/CustomerAction_list?from=true','','width=600,height=300')" />
 													</TD>
 													
 													<TD><INPUT class=button id=sButton2 type=submit
@@ -120,7 +116,7 @@
 													<TD><s:property value="visit_detail" /></TD>
 													<TD><s:property value="visit_nexttime_s" /></TD>
 													<TD>
-															<!-- 没有传递参数,显示删除和修改操作 -->
+														<!-- 没有传递参数,显示删除和修改操作 -->
 														<a href="${pageContext.request.contextPath }/SaleVisitAction_toEdit?visit_id=<s:property value="visit_id" />">修改</a>
 														&nbsp;&nbsp;
 														<a href="javascript:void(0)" onclick="deleteConfirm('<s:property value="cust_name" />','${pageContext.request.contextPath }/CustomerAction_delete?cust_id=<s:property value="cust_id" />');" >删除</a>

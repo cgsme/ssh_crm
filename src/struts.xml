@@ -70,6 +70,13 @@
 			<result name="toList" type="redirectAction">LinkManAction_list</result>
 			<result name="error">/index.jsp</result>
 		</action>
+
+		<!--访问-->
+		<action name="SaleVisitAction_*" class="saleVisitAction" method="{1}">
+			<result name="toList" type="redirectAction">SaleVisitAction_list</result>
+			<result name="list">/jsp/salevisit/list.jsp</result>
+			<result name="add">/jsp/salevisit/add.jsp</result>
+		</action>
 	</package>
 </struts>
 	

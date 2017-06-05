@@ -1,5 +1,8 @@
 package cn.tutu.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Customer {
 
     /*
@@ -28,6 +31,16 @@ public class Customer {
     private BaseDict cust_source;
     private BaseDict cust_level;
     private BaseDict cust_industry;
+
+    private Set<SaleVisit> saleVisits = new HashSet<>();
+
+    public Set<SaleVisit> getSaleVisits() {
+        return saleVisits;
+    }
+
+    public void setSaleVisits(Set<SaleVisit> saleVisits) {
+        this.saleVisits = saleVisits;
+    }
 
     public Long getCust_id() {
         return cust_id;

@@ -23,18 +23,13 @@
 			// yy 已经代表了4位的年份
 			// mm 代表月份
 			// dd 代表日期
-		$('#visit_time').datepick({dateFormat: 'yy-mm-dd'}); 
-		$('#visit_nexttime').datepick({dateFormat: 'yy-mm-dd'}); 
+		$('#visit_time').datepick({dateFormat: 'yy-mm-dd'});
+		$('#visit_nexttime').datepick({dateFormat: 'yy-mm-dd'});
 	});
 </script>
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
-	<FORM id=form1 name=form1
-		action="${pageContext.request.contextPath }/SaleVisitAction_add"
-		method="post"  onsubmit="return checkForm(['user.user_id','visit_nexttime']);" >
-		<!-- 隐藏域回显当前编辑的拜访记录id -->
-		<input  type="hidden"  name="visit_id" value="<s:property value="#saleVisit.visit_id" />"  />
 
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
@@ -51,8 +46,9 @@
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
-					<TD width=15 background=${pageContext.request.contextPath }/images/new_022.jpg><IMG
-						src="${pageContext.request.contextPath }/images/new_022.jpg" border=0></TD>
+					<TD width=15 background=${pageContext.request.contextPath }/images/new_022.jpg>
+						<IMG src="${pageContext.request.contextPath }/images/new_022.jpg" border=0>
+					</TD>
 					<TD vAlign=top width="100%" bgColor=#ffffff>
 						<TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
 							<TR>
@@ -62,16 +58,16 @@
 								<TD height=2></TD>
 							</TR>
 						</TABLE>
-						
+						<FORM id=form1 name=form1 action="${pageContext.request.contextPath }/SaleVisitAction_add" method="post">
+							<!-- 隐藏域回显当前编辑的拜访记录id -->
+							<input type="hidden" name="visit_id" value="<s:property value='#saleVisit.visit_id'/>"/>
 						<TABLE cellSpacing=0 cellPadding=5  border=0>
-						  
-						    
 							<TR>
 								<td>所属客户：</td>
-								<td >
-								<input type="hidden" name="customer.cust_id" style="WIDTH: 180px" id="cust_id" value="<s:property value="#saleVisit.customer.cust_id" />" />
-								<input type="text"  style="WIDTH: 180px" id="cust_name" value="<s:property value="#saleVisit.customer.cust_name" />"/>
-									<input type="button" value="选择客户" onclick="window.open('${pageContext.request.contextPath}/CustomerAction_list?select=true','','width=600,height=300')" />
+								<td>
+								<input type="hidden" name="customer.cust_id" id="cust_id" value="<s:property value="#saleVisit.customer.cust_id" />" />
+								<input type="text"  style="WIDTH: 180px" readonly="readonly" id="cust_name" value="<s:property value="#saleVisit.customer.cust_name" />"/>
+									<input type="button" value="选择客户" onclick="window.open('${pageContext.request.contextPath}/CustomerAction_list?from=true','','width=600,height=300')" />
 								</td>
 								<td>拜访时间 ：</td>
 								<td  >
@@ -116,7 +112,7 @@
 							</tr>
 							
 						</TABLE>
-						
+						</FORM>
 						
 					</TD>
 					<TD width=15 background="${pageContext.request.contextPath }/images/new_023.jpg">
@@ -136,6 +132,6 @@
 				</TR>
 			</TBODY>
 		</TABLE>
-	</FORM>
+
 </BODY>
 </HTML>

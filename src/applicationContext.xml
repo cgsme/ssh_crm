@@ -92,6 +92,9 @@
 	<bean name="linkManAction" class="cn.tutu.web.action.LinkManAction" scope="prototype">
 		<property name="linkManService" ref="linkManService" />
 	</bean>
+	<bean name="saleVisitAction" class="cn.tutu.web.action.SaleVisitAction">
+		<property name="saleVisitService" ref="saleVisitService"/>
+	</bean>
 
 
 
@@ -107,6 +110,9 @@
 	</bean>
 	<bean name="linkManService" class="cn.tutu.service.impl.LinkManServiceImpl">
 		<property name="linkManDao" ref="linkManDao" />
+	</bean>
+	<bean name="saleVisitService" class="cn.tutu.service.impl.SaleVisitServiceImpl">
+		<property name="saleVisitDao" ref="saleVisitDao"/>
 	</bean>
 
 
@@ -125,6 +131,9 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean name="linkManDao" class="cn.tutu.dao.impl.LinkManDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean name="saleVisitDao" class="cn.tutu.dao.impl.SaleVisitDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 </beans>
