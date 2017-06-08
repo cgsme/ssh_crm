@@ -36,6 +36,16 @@ public class BaseDictAction extends ActionSupport {
         return null;
     }
 
+    /**
+     * 数据字典列表
+     * @return
+     * @throws Exception
+     */
+    public String list() throws Exception {
+
+        return "list";
+    }
+
     public String getTypeCode() {
         return typeCode;
     }

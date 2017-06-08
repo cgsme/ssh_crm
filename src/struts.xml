@@ -48,6 +48,7 @@
 		<!--用户action-->
 		<action name="UserAction_*" class="userAction" method="{1}">
 			<result name="toHome" type="redirect" >/index.htm</result>
+			<result name="list">/jsp/user/list.jsp</result>
 			<result name="register">/register.jsp</result>
 			<result name="error" >/login.jsp</result>
 		</action>

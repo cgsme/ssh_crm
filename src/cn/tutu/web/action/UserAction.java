@@ -1,18 +1,22 @@
 package cn.tutu.web.action;
 
 import cn.tutu.utils.MD5Utils;
+import cn.tutu.utils.PageBean;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 import cn.tutu.domain.User;
 import cn.tutu.service.UserService;
+import com.sun.xml.internal.bind.v2.TODO;
+import org.hibernate.criterion.DetachedCriteria;
 
 public class UserAction extends ActionSupport implements ModelDriven<User> {
+
 	private User user = new User();
-	
 	private UserService userService ;
-	
+	private Integer currentPage;
+	private Integer pageSize;
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
@@ -58,11 +62,38 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         return "toLogin";
     }
 
+	/**
+	 * 用户列表
+	 * @return
+	 * @throws Exception
+	 */
+	public String list() throws Exception{
+
+		DetachedCriteria dc = DetachedCriteria.forClass(User.class);
+		PageBean pageBean = userService.getPageBean(dc, currentPage, pageSize);
+		ActionContext.getContext().put("pageBean", pageBean);
+		return "list";
+
+	}
+
 	@Override
 	public User getModel() {
 		return user;
 	}
 
-	
-	
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public Integer getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
 }

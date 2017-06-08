@@ -1,5 +1,7 @@
 package cn.tutu.service.impl;
 
+import cn.tutu.utils.PageBean;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.tutu.dao.UserDao;
 import cn.tutu.domain.User;
 import cn.tutu.service.UserService;
+
+import java.util.List;
 
 @Transactional(isolation=Isolation.REPEATABLE_READ,propagation=Propagation.REQUIRED,readOnly=true)
 public class UserServiceImpl implements UserService{
@@ -43,6 +47,27 @@ public class UserServiceImpl implements UserService{
 			throw new RuntimeException("用户名已经存在！！");
 		}
 	}
+
+	/**
+	 * 获得用户分页对象
+	 * @param dc
+	 * @param currentPage
+	 * @param pageSize
+	 * @return
+	 */
+    @Override
+    public PageBean getPageBean(DetachedCriteria dc, Integer currentPage, Integer pageSize) {
+		// 获得总记录数
+		Integer totalCount = ud.getTotalCount(dc);
+		// 创建pageBean对象
+		PageBean pageBean = new PageBean(currentPage, totalCount, pageSize);
+		// 获得数据集合
+		List<User> pageList = ud.getPageList(dc, pageBean.getStart(), pageBean.getPageSize());
+		// 集合封装到pageBean中
+		pageBean.setList(pageList);
+		// 返回pageBean
+		return pageBean;
+    }
 
     public void setUd(UserDao ud) {
 		this.ud = ud;

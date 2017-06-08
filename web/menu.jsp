@@ -262,7 +262,7 @@ A.active {
 														target=main>－角色管理</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="#"
+													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath}/UserAction_list"
 														target=main>－用户管理</A></TD>
 												</TR>
 												<TR>
