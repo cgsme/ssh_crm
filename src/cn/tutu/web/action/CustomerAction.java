@@ -49,6 +49,17 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	}
 
 	/**
+	 * 统计分析
+	 * @return
+	 * @throws Exception
+	 */
+	public String count() throws Exception {
+		List<Object[]> list = cs.count();
+		ActionContext.getContext().put("list", list);
+		return "count";
+	}
+
+	/**
 	 * 修改用户页面
 	 * @return
 	 * @throws Exception

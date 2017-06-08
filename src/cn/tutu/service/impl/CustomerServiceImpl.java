@@ -42,7 +42,16 @@ public class CustomerServiceImpl implements CustomerService {
 		return cd.getById(cust_id);
 	}
 
-	public void setCd(CustomerDao cd) {
+	/**
+	 * 客户行业统计分析
+	 * @return
+	 */
+    @Override
+    public List<Object[]> count() {
+        return cd.count();
+    }
+
+    public void setCd(CustomerDao cd) {
 		this.cd = cd;
 	}
 
