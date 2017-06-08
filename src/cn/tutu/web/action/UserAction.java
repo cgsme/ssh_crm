@@ -1,5 +1,6 @@
 package cn.tutu.web.action;
 
+import cn.tutu.utils.MD5Utils;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -19,11 +20,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
 	public String login() throws Exception {
 			//1 调用Service执行登陆逻辑
+			user.setUser_password(MD5Utils.md5(user.getUser_password()));
 			User u = userService.getUserByCodePassword(user);
+
 			//2 将返回的User对象放入session域
 			ActionContext.getContext().getSession().put("user", u);
 			//3 重定向到项目首页
-		return "toHome";
+			return "toHome";
 	}
 
 	/**
@@ -40,6 +43,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			ActionContext.getContext().put("error", e.getMessage());
 			return "register";
 		}
+		user.setUser_password(MD5Utils.md5(user.getUser_password()));
 		userService.saveUser(user);
 		return "toLogin";
 	}

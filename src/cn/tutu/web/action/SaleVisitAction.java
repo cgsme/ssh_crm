@@ -52,19 +52,15 @@ public class SaleVisitAction extends ActionSupport implements ModelDriven<SaleVi
             saleVisit.setVisit_id(null);
             System.out.println("id为空串");
         }
-        try {
-            User user = (User) ActionContext.getContext().getSession().get("user");
-            saleVisit.setUser(user);
-            saleVisitService.save(saleVisit);
-            return "toList";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return  null;
+        User user = (User) ActionContext.getContext().getSession().get("user");
+        saleVisit.setUser(user);
+        saleVisitService.save(saleVisit);
+        return "toList";
     }
 
     /**
      * 所有访问记录
+     *
      * @return
      * @throws Exception
      */
@@ -82,6 +78,7 @@ public class SaleVisitAction extends ActionSupport implements ModelDriven<SaleVi
 
     /**
      * 修改访问记录
+     *
      * @return
      * @throws Exception
      */

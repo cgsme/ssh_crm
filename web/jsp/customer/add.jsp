@@ -61,8 +61,6 @@
 						</TABLE>
 
 						<TABLE cellSpacing=0 cellPadding=5  border=0>
-
-
 							<TR>
 								<td>客户名称：</td>
 								<td>
@@ -81,10 +79,7 @@
 								<td>客户行业：</td>
 								<td id="industry"> </td>
 							</TR>
-
 							<TR>
-
-
 								<td>固定电话 ：</td>
 								<td>
 								<INPUT class=textbox id=sChannel2 value="<s:property value="#customer.cust_phone"/>"
@@ -96,7 +91,6 @@
 														style="WIDTH: 180px" maxLength=50 name="cust_mobile">
 								</td>
 							</TR>
-
 							<tr>
 								<td rowspan=2>
 								<INPUT class=button id=sButton2 type=submit
@@ -104,8 +98,6 @@
 								</td>
 							</tr>
 						</TABLE>
-
-
 					</TD>
 					<TD width=15 background="${pageContext.request.contextPath }/images/new_023.jpg">
 					<IMG src="${pageContext.request.contextPath }/images/new_023.jpg" border=0></TD>
